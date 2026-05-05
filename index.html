@@ -92,15 +92,15 @@
   .stat-item strong { display: block; font-family: 'Syne', sans-serif; font-size: 1.8rem; color: var(--cyan-700); font-weight: 800; }
   .stat-item span { font-size: 0.9rem; color: var(--text-muted); }
 
-  /* ── BRANDS (UPDATED IMAGES) ── */
+  /* ── BRANDS (UPDATED IMAGES & CSS) ── */
   .brands { background: var(--white); padding: 60px 0; border-bottom: 1px solid var(--cyan-100); }
   .brands-grid { 
     display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); 
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); 
     gap: 30px; 
     align-items: center; 
     justify-items: center;
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto;
   }
   
@@ -109,17 +109,18 @@
     flex-direction: column;
     align-items: center; 
     justify-content: center;
-    gap: 12px;
-    padding: 20px;
+    gap: 10px;
+    padding: 15px;
     transition: all 0.3s ease;
     cursor: default;
   }
   
   .brand-logo-img {
-    max-height: 60px; /* Menjaga tinggi logo agar seragam */
+    max-height: 50px; /* Diperkecil dari 60px agar lebih seragam */
+    max-width: 100px; /* Ditambah batas lebar untuk logo yang melebar */
     width: auto;
     object-fit: contain;
-    /* UX: Awalnya sedikit pudar agar tidak mencolok mata, fokus ke konten utama */
+    /* UX: Awalnya sedikit pudar agar tidak mencolok mata */
     filter: grayscale(100%) opacity(0.6); 
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
@@ -133,7 +134,7 @@
   .brand-name {
     font-family: 'Syne', sans-serif;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--text-muted);
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -222,7 +223,7 @@
     .why-us-grid, .contact-grid { grid-template-columns: 1fr; }
     .hero-title { font-size: 2rem; }
     .map-container { min-height: 300px; }
-    .brands-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; } /* 2 kolom di HP */
+    .brands-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; } /* 3 kolom di HP agar muat banyak */
   }
 </style>
 </head>
@@ -261,7 +262,7 @@
   </div>
 </section>
 
-<!-- BRANDS SECTION (UPDATED LOGOS) -->
+<!-- BRANDS SECTION (UPDATED LOGOS & ADDED NEW BRANDS) -->
 <section class="brands" id="brands">
   <div class="container">
     <div class="text-center">
@@ -316,6 +317,72 @@
       <div class="brand-item">
         <img src="https://i.ibb.co/8DNTprNn/Logo-Akari.png" alt="Akari AC" class="brand-logo-img">
         <span class="brand-name">Akari</span>
+      </div>
+
+      <!-- Sanken (NEW) -->
+      <div class="brand-item">
+        <img src="https://i.ibb.co/F47jwZJ7/Logo-Sanken.png" alt="Sanken AC" class="brand-logo-img">
+        <span class="brand-name">Sanken</span>
+      </div>
+
+      <!-- Aqua (NEW) -->
+      <div class="brand-item">
+        <img src="https://i.ibb.co/QvWDQm7v/tmp-9a6db9244d8172ef5af8fd932e3220fe-0f757bd25520a6d519a4eaa58c9eaa16.jpg" alt="Aqua AC" class="brand-logo-img">
+        <span class="brand-name">Aqua</span>
+      </div>
+
+      <!-- Mitsubishi (NEW) -->
+      <div class="brand-item">
+        <img src="https://i.ibb.co/zVFmqW8p/709-7096063-mitsubishi-air-conditioning-mitsubishi-heavy-industries-logo-png.jpg" alt="Mitsubishi AC" class="brand-logo-img">
+        <span class="brand-name">Mitsubishi</span>
+      </div>
+
+      <!-- Gree (NEW) -->
+      <div class="brand-item">
+        <img src="https://i.ibb.co/S4bg4DtV/logo.webp" alt="Gree AC" class="brand-logo-img">
+        <span class="brand-name">Gree</span>
+      </div>
+
+      <!-- Midea (NEW) -->
+      <div class="brand-item">
+        <img src="https://i.ibb.co/PG91SYsD/Midea-Logo.png" alt="Midea AC" class="brand-logo-img">
+        <span class="brand-name">Midea</span>
+      </div>
+
+      <!-- Changhong (NEW) -->
+      <div class="brand-item">
+        <img src="https://i.ibb.co/9kKFrZ7d/CHL-60028-03c2b5e6-5af1-4397-ad3a-e04b04c50b5b.png" alt="Changhong AC" class="brand-logo-img">
+        <span class="brand-name">Changhong</span>
+      </div>
+
+      <!-- Polytron (NEW) -->
+      <div class="brand-item">
+        <img src="https://i.ibb.co/tTYWgMCf/61dfc49b1fca06-06626864.png" alt="Polytron AC" class="brand-logo-img">
+        <span class="brand-name">Polytron</span>
+      </div>
+
+      <!-- TCL (NEW) -->
+      <div class="brand-item">
+        <img src="https://i.ibb.co/j9XbrB1x/tcl-share-e1676456859336.png" alt="TCL AC" class="brand-logo-img">
+        <span class="brand-name">TCL</span>
+      </div>
+
+      <!-- Hisense (NEW) -->
+      <div class="brand-item">
+        <img src="https://i.ibb.co/G4Nc6s8k/Hisense-logo-PNG-6-1024x576.webp" alt="Hisense AC" class="brand-logo-img">
+        <span class="brand-name">Hisense</span>
+      </div>
+
+      <!-- AUX (NEW) -->
+      <div class="brand-item">
+        <img src="https://i.ibb.co/PGVnQ3nq/Logo-AUX-Air-Conditioner-China-svg.png" alt="AUX AC" class="brand-logo-img">
+        <span class="brand-name">AUX</span>
+      </div>
+
+      <!-- Denpoo (NEW) -->
+      <div class="brand-item">
+        <img src="https://i.ibb.co/mr00FKr3/images.png" alt="Denpoo AC" class="brand-logo-img">
+        <span class="brand-name">Denpoo</span>
       </div>
     </div>
   </div>
