@@ -92,40 +92,56 @@
   .stat-item strong { display: block; font-family: 'Syne', sans-serif; font-size: 1.8rem; color: var(--cyan-700); font-weight: 800; }
   .stat-item span { font-size: 0.9rem; color: var(--text-muted); }
 
-  /* ── BRANDS (UPDATED WITH LOGO STYLES) ── */
-  .brands { background: var(--white); padding: 50px 0; border-bottom: 1px solid var(--cyan-100); }
-  .brands-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; align-items: center; }
+  /* ── BRANDS (UPDATED FOR UX) ── */
+  .brands { background: var(--white); padding: 60px 0; border-bottom: 1px solid var(--cyan-100); }
+  .brands-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); 
+    gap: 30px; 
+    align-items: center; 
+    justify-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
   
   .brand-item { 
-    /* Container for the logo */
-    display: flex; align-items: center; justify-content: center;
-    padding: 15px 30px; 
-    border: 1px solid transparent; /* Optional: remove border for cleaner logo look */
-    background: var(--white);
-    transition: 0.3s;
-    height: 80px; /* Fixed height to ensure alignment */
+    display: flex; 
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+    gap: 12px;
+    padding: 20px;
+    transition: all 0.3s ease;
+    cursor: default;
   }
   
-  .brand-item img {
-    /* Logo styling */
-    max-height: 50px; /* Limit height so they don't look huge */
+  .brand-logo-img {
+    max-height: 60px; /* Menjaga tinggi logo agar seragam */
     width: auto;
     object-fit: contain;
-    /* Grayscale effect for elegance */
+    /* UX: Awalnya sedikit pudar agar tidak mencolok mata, fokus ke konten utama */
     filter: grayscale(100%) opacity(0.6); 
-    transition: all 0.4s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  /* Hover effect: Remove grayscale and slightly enlarge */
-  .brand-item:hover img {
+  /* Hover Effect: Membuat logo hidup dan berwarna */
+  .brand-item:hover .brand-logo-img {
     filter: grayscale(0%) opacity(1);
     transform: scale(1.1);
   }
 
-  /* Fallback text styling if image fails to load */
-  .brand-fallback {
-    font-family: 'Syne', sans-serif; font-weight: 700; 
-    color: var(--text-muted); display: none;
+  .brand-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: color 0.3s;
+  }
+
+  .brand-item:hover .brand-name {
+    color: var(--cyan-600);
   }
 
   /* ── SERVICES ── */
@@ -206,8 +222,7 @@
     .why-us-grid, .contact-grid { grid-template-columns: 1fr; }
     .hero-title { font-size: 2rem; }
     .map-container { min-height: 300px; }
-    .brands-grid { gap: 20px; }
-    .brand-item { padding: 10px; width: 45%; } /* 2 logos per row on mobile */
+    .brands-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; } /* 2 kolom di HP */
   }
 </style>
 </head>
@@ -246,54 +261,61 @@
   </div>
 </section>
 
-<!-- BRANDS SECTION (UPDATED WITH LOGOS) -->
+<!-- BRANDS SECTION (UPDATED UX & LOGOS) -->
 <section class="brands" id="brands">
   <div class="container">
     <div class="text-center">
       <span class="section-tag">Spesialisasi</span>
-      <h2 style="margin-bottom: 30px;">Merk AC yang Kami Kerjakan</h2>
+      <h2 class="section-title" style="margin-bottom: 50px;">Merk AC yang Kami Kerjakan</h2>
     </div>
+    
     <div class="brands-grid">
       <!-- LG -->
       <div class="brand-item">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/LG_logo.svg/2560px-LG_logo.svg.png" alt="LG Logo">
-        <span class="brand-fallback">LG</span>
+        <img src="https://i.ibb.co/60wCCM4p/" alt="LG AC" class="brand-logo-img">
+        <span class="brand-name">LG</span>
       </div>
+
       <!-- Daikin -->
       <div class="brand-item">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Daikin_logo.svg/2560px-Daikin_logo.svg.png" alt="Daikin Logo">
-        <span class="brand-fallback">Daikin</span>
+        <img src="https://i.ibb.co/PssZ3M0R/" alt="Daikin AC" class="brand-logo-img">
+        <span class="brand-name">Daikin</span>
       </div>
+
       <!-- Sharp -->
       <div class="brand-item">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Sharp_Corporation_logo.svg/2560px-Sharp_Corporation_logo.svg.png" alt="Sharp Logo">
-        <span class="brand-fallback">Sharp</span>
+        <img src="https://i.ibb.co/VcYs0Bfp/" alt="Sharp AC" class="brand-logo-img">
+        <span class="brand-name">Sharp</span>
       </div>
+
       <!-- Toshiba -->
       <div class="brand-item">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Toshiba_logo.svg/2560px-Toshiba_logo.svg.png" alt="Toshiba Logo">
-        <span class="brand-fallback">Toshiba</span>
+        <img src="https://i.ibb.co/MJ1wFCp/" alt="Toshiba AC" class="brand-logo-img">
+        <span class="brand-name">Toshiba</span>
       </div>
+
       <!-- Panasonic -->
       <div class="brand-item">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Panasonic_logo_%28Blue%29.svg/2560px-Panasonic_logo_%28Blue%29.svg.png" alt="Panasonic Logo">
-        <span class="brand-fallback">Panasonic</span>
+        <img src="https://i.ibb.co/s90J1Czg/" alt="Panasonic AC" class="brand-logo-img">
+        <span class="brand-name">Panasonic</span>
       </div>
+
       <!-- Samsung -->
       <div class="brand-item">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Samsung_Logo.svg/2560px-Samsung_Logo.svg.png" alt="Samsung Logo">
-        <span class="brand-fallback">Samsung</span>
+        <img src="https://i.ibb.co/990Tpn92/" alt="Samsung AC" class="brand-logo-img">
+        <span class="brand-name">Samsung</span>
       </div>
+
       <!-- Haier -->
       <div class="brand-item">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Haier_logo.svg/2560px-Haier_logo.svg.png" alt="Haier Logo">
-        <span class="brand-fallback">Haier</span>
+        <img src="https://i.ibb.co/zTRdB2Bj/" alt="Haier AC" class="brand-logo-img">
+        <span class="brand-name">Haier</span>
       </div>
+
       <!-- Akari -->
       <div class="brand-item">
-        <!-- Fallback mechanism for Akari as external logos can be unstable -->
-        <img src="https://logos-world.net/wp-content/uploads/2022/06/Akari-Logo.png" alt="Akari Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-        <span class="brand-fallback" style="display:block; font-family:'Syne'; font-weight:700; color:var(--text-muted);">AKARI</span>
+        <img src="https://i.ibb.co/wNB3XSBZ/" alt="Akari AC" class="brand-logo-img">
+        <span class="brand-name">Akari</span>
       </div>
     </div>
   </div>
