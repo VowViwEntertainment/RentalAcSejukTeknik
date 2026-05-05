@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sejuk Teknik AC – Servis, Cuci & Perbaikan AC Profesional</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<title>Sejuk Teknik AC – Spesialis Servis & Rental AC Jakarta</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
+  /* ── RESET & VARIABLES ── */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
@@ -21,7 +22,6 @@
     --cyan-900: #164e63;
     --sky-50: #f0f9ff;
     --sky-100: #e0f2fe;
-    --sky-400: #38bdf8;
     --white: #ffffff;
     --dark: #0a1628;
     --text-main: #0f172a;
@@ -29,7 +29,7 @@
     --radius: 16px;
     --radius-sm: 8px;
     --shadow: 0 4px 24px rgba(6, 182, 212, 0.12);
-    --shadow-lg: 0 8px 48px rgba(6, 182, 212, 0.18);
+    --shadow-lg: 0 10px 40px rgba(6, 182, 212, 0.15);
   }
 
   html { scroll-behavior: smooth; }
@@ -42,748 +42,636 @@
     overflow-x: hidden;
   }
 
+  /* ── UTILITIES ── */
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 5%; }
+  .section-padding { padding: 80px 0; }
+  .text-center { text-align: center; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 100px; font-weight: 600; text-decoration: none; transition: 0.3s; cursor: pointer; border: none; }
+  .btn-primary { background: var(--cyan-500); color: white; box-shadow: 0 4px 12px rgba(6,182,212,0.3); }
+  .btn-primary:hover { background: var(--cyan-600); transform: translateY(-2px); }
+  .btn-outline { background: transparent; border: 2px solid var(--cyan-500); color: var(--cyan-700); }
+  .btn-outline:hover { background: var(--cyan-50); border-color: var(--cyan-600); }
+
+  /* ── TYPOGRAPHY ── */
+  h1, h2, h3, h4 { font-family: 'Syne', sans-serif; color: var(--dark); }
+  .section-tag { font-size: 0.85rem; font-weight: 700; color: var(--cyan-600); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; display: inline-block; }
+  .section-title { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; margin-bottom: 16px; line-height: 1.2; }
+  .section-desc { font-size: 1.1rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 40px; }
+
   /* ── NAV ── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(255,255,255,0.85);
-    backdrop-filter: blur(16px);
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--cyan-100);
-    padding: 0 5%;
+    padding: 15px 5%;
     display: flex; align-items: center; justify-content: space-between;
-    height: 68px;
   }
-  .nav-brand {
-    display: flex; align-items: center; gap: 10px;
-    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.25rem;
-    color: var(--cyan-700); text-decoration: none;
-  }
-  .nav-brand .logo-icon {
-    width: 36px; height: 36px; background: linear-gradient(135deg, var(--cyan-400), var(--cyan-600));
-    border-radius: 10px; display: flex; align-items: center; justify-content: center;
-    color: white; font-size: 18px;
-  }
-  .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
-  .nav-links a {
-    text-decoration: none; font-size: 0.9rem; font-weight: 500;
-    color: var(--text-muted); transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--cyan-600); }
-  .nav-cta {
-    background: var(--cyan-500); color: white !important;
-    padding: 8px 20px; border-radius: 100px; font-weight: 500 !important;
-  }
-  .nav-cta:hover { background: var(--cyan-600) !important; }
-  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; border: none; background: none; padding: 4px; }
-  .hamburger span { width: 24px; height: 2px; background: var(--cyan-700); border-radius: 2px; transition: 0.3s; }
+  .nav-brand { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.3rem; color: var(--cyan-700); text-decoration: none; display: flex; align-items: center; gap: 8px; }
+  .nav-links { display: flex; gap: 24px; list-style: none; }
+  .nav-links a { text-decoration: none; font-size: 0.95rem; font-weight: 500; color: var(--text-muted); transition: 0.2s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--cyan-600); }
+  .mobile-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--cyan-700); }
 
   /* ── HERO ── */
   .hero {
-    min-height: 100vh;
-    padding: 120px 5% 80px;
-    display: flex; align-items: center;
-    background: linear-gradient(160deg, #ecfeff 0%, #e0f2fe 40%, #f0f9ff 100%);
+    padding: 160px 5% 100px;
+    background: linear-gradient(160deg, var(--cyan-50) 0%, var(--white) 100%);
     position: relative; overflow: hidden;
   }
-  .hero::before {
-    content: '';
-    position: absolute; top: -80px; right: -80px;
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(34,211,238,0.15) 0%, transparent 70%);
-    pointer-events: none;
-  }
   .hero::after {
-    content: '';
-    position: absolute; bottom: -100px; left: -100px;
-    width: 500px; height: 500px;
-    background: radial-gradient(circle, rgba(6,182,212,0.1) 0%, transparent 70%);
-    pointer-events: none;
+    content: ''; position: absolute; top: 0; right: 0; width: 50%; height: 100%;
+    background: radial-gradient(circle at top right, rgba(34,211,238,0.1), transparent 60%);
+    z-index: 0;
   }
-  .hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-  .hero-badge {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: var(--cyan-100); color: var(--cyan-700);
-    padding: 6px 16px; border-radius: 100px; font-size: 0.85rem; font-weight: 500;
-    margin-bottom: 24px;
-  }
-  .hero-badge span { width: 8px; height: 8px; background: var(--cyan-500); border-radius: 50%; animation: pulse 2s infinite; }
-  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
-  .hero h1 {
-    font-family: 'Syne', sans-serif; font-weight: 800;
-    font-size: clamp(2.2rem, 4vw, 3.4rem); line-height: 1.15;
-    color: var(--dark); margin-bottom: 20px;
-  }
-  .hero h1 em { font-style: normal; color: var(--cyan-500); }
-  .hero p { font-size: 1.1rem; color: var(--text-muted); max-width: 480px; margin-bottom: 36px; }
-  .hero-buttons { display: flex; gap: 14px; flex-wrap: wrap; }
-  .btn-primary {
-    background: var(--cyan-500); color: white;
-    padding: 14px 28px; border-radius: 100px;
-    font-weight: 500; font-size: 1rem; text-decoration: none;
-    display: inline-flex; align-items: center; gap: 8px;
-    transition: all 0.25s; box-shadow: 0 4px 16px rgba(6,182,212,0.4);
-  }
-  .btn-primary:hover { background: var(--cyan-600); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(6,182,212,0.5); }
-  .btn-outline {
-    border: 2px solid var(--cyan-300); color: var(--cyan-700);
-    padding: 12px 28px; border-radius: 100px;
-    font-weight: 500; font-size: 1rem; text-decoration: none;
-    display: inline-flex; align-items: center; gap: 8px;
-    transition: all 0.25s; background: white;
-  }
-  .btn-outline:hover { border-color: var(--cyan-500); background: var(--cyan-50); }
+  .hero-inner { position: relative; z-index: 1; max-width: 800px; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--cyan-100); color: var(--cyan-700); padding: 6px 16px; border-radius: 50px; font-weight: 600; font-size: 0.9rem; margin-bottom: 24px; }
+  .hero-title span { color: var(--cyan-500); }
+  .hero-desc { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 32px; }
+  .hero-stats { display: flex; gap: 40px; margin-top: 40px; padding-top: 30px; border-top: 1px solid var(--cyan-200); }
+  .stat-item strong { display: block; font-family: 'Syne', sans-serif; font-size: 1.8rem; color: var(--cyan-700); font-weight: 800; }
+  .stat-item span { font-size: 0.9rem; color: var(--text-muted); }
 
-  .hero-visual {
-    display: flex; justify-content: center; align-items: center;
-    position: relative;
+  /* ── BRANDS (UPDATED WITH LOGO STYLES) ── */
+  .brands { background: var(--white); padding: 50px 0; border-bottom: 1px solid var(--cyan-100); }
+  .brands-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; align-items: center; }
+  
+  .brand-item { 
+    /* Container for the logo */
+    display: flex; align-items: center; justify-content: center;
+    padding: 15px 30px; 
+    border: 1px solid transparent; /* Optional: remove border for cleaner logo look */
+    background: var(--white);
+    transition: 0.3s;
+    height: 80px; /* Fixed height to ensure alignment */
   }
-  .ac-card {
-    background: white; border-radius: 24px;
-    padding: 32px; box-shadow: var(--shadow-lg);
-    border: 1px solid var(--cyan-100);
-    width: 100%; max-width: 360px; position: relative;
+  
+  .brand-item img {
+    /* Logo styling */
+    max-height: 50px; /* Limit height so they don't look huge */
+    width: auto;
+    object-fit: contain;
+    /* Grayscale effect for elegance */
+    filter: grayscale(100%) opacity(0.6); 
+    transition: all 0.4s ease;
   }
-  .ac-card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
-  .ac-temp { font-family: 'Syne', sans-serif; font-size: 3rem; font-weight: 800; color: var(--cyan-500); }
-  .ac-status { font-size: 0.85rem; color: var(--text-muted); }
-  .ac-status strong { display: block; color: var(--dark); font-size: 1rem; }
-  .ac-controls { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .ac-btn {
-    padding: 12px; border-radius: 12px; text-align: center;
-    font-size: 0.85rem; font-weight: 500; cursor: pointer; border: none;
-    transition: 0.2s;
-  }
-  .ac-btn.active { background: var(--cyan-500); color: white; }
-  .ac-btn:not(.active) { background: var(--cyan-50); color: var(--cyan-700); }
-  .ac-btn:not(.active):hover { background: var(--cyan-100); }
-  .float-badge {
-    position: absolute;
-    background: white; border-radius: 12px;
-    padding: 10px 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    font-size: 0.8rem; font-weight: 500;
-    display: flex; align-items: center; gap: 8px;
-    border: 1px solid var(--cyan-100);
-    animation: float 3s ease-in-out infinite;
-  }
-  .float-badge.top-right { top: -20px; right: -30px; animation-delay: 0.5s; }
-  .float-badge.bottom-left { bottom: -16px; left: -24px; }
-  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
-  .float-badge .dot { width: 8px; height: 8px; border-radius: 50%; }
-  .dot-green { background: #10b981; }
-  .dot-cyan { background: var(--cyan-400); }
 
-  .hero-stats { display: flex; gap: 32px; margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--cyan-100); }
-  .stat-item { text-align: center; }
-  .stat-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.8rem; color: var(--cyan-600); }
-  .stat-label { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; }
+  /* Hover effect: Remove grayscale and slightly enlarge */
+  .brand-item:hover img {
+    filter: grayscale(0%) opacity(1);
+    transform: scale(1.1);
+  }
 
-  /* ── SECTION ── */
-  section { padding: 80px 5%; }
-  .section-inner { max-width: 1200px; margin: 0 auto; }
-  .section-tag {
-    font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--cyan-500);
-    margin-bottom: 12px; display: block;
+  /* Fallback text styling if image fails to load */
+  .brand-fallback {
+    font-family: 'Syne', sans-serif; font-weight: 700; 
+    color: var(--text-muted); display: none;
   }
-  .section-title {
-    font-family: 'Syne', sans-serif; font-weight: 800;
-    font-size: clamp(1.8rem, 3vw, 2.6rem); color: var(--dark);
-    margin-bottom: 16px; line-height: 1.2;
-  }
-  .section-sub { font-size: 1.05rem; color: var(--text-muted); max-width: 560px; }
-  .section-head { margin-bottom: 48px; }
-  .section-head.centered { text-align: center; }
-  .section-head.centered .section-sub { margin: 0 auto; }
 
   /* ── SERVICES ── */
-  .services { background: white; }
-  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
-  .service-card {
-    background: var(--sky-50); border-radius: var(--radius);
-    padding: 32px 28px; border: 1px solid var(--cyan-100);
-    transition: all 0.3s; cursor: pointer; position: relative; overflow: hidden;
-  }
-  .service-card::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-    background: linear-gradient(90deg, var(--cyan-400), var(--cyan-600));
-    transform: scaleX(0); transform-origin: left; transition: 0.3s;
-  }
-  .service-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--cyan-200); }
-  .service-card:hover::before { transform: scaleX(1); }
-  .service-icon {
-    width: 56px; height: 56px; background: var(--cyan-100);
-    border-radius: 14px; display: flex; align-items: center; justify-content: center;
-    font-size: 24px; margin-bottom: 20px;
-  }
-  .service-card h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.15rem; margin-bottom: 10px; color: var(--dark); }
-  .service-card p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px; }
-  .service-link {
-    font-size: 0.9rem; font-weight: 500; color: var(--cyan-600);
-    text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
-    transition: gap 0.2s;
-  }
-  .service-link:hover { gap: 10px; }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+  .service-card { background: var(--white); padding: 32px; border-radius: var(--radius); border: 1px solid var(--cyan-100); transition: 0.3s; position: relative; overflow: hidden; }
+  .service-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); border-color: var(--cyan-300); }
+  .service-icon { width: 60px; height: 60px; background: var(--cyan-100); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-bottom: 20px; }
+  .service-card h3 { font-size: 1.25rem; margin-bottom: 10px; }
+  .service-card p { color: var(--text-muted); margin-bottom: 20px; font-size: 0.95rem; }
+  .service-link { color: var(--cyan-600); font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; }
 
-  /* ── CALCULATOR ── */
-  .calculator { background: linear-gradient(135deg, var(--cyan-700) 0%, var(--cyan-800) 100%); }
-  .calc-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
-  .calc-info .section-tag { color: var(--cyan-300); }
-  .calc-info .section-title { color: white; }
-  .calc-info .section-sub { color: var(--cyan-100); }
-  .calc-box {
-    background: rgba(255,255,255,0.08); border-radius: 20px;
-    padding: 36px; border: 1px solid rgba(255,255,255,0.15);
-  }
-  .calc-box label { display: block; font-size: 0.85rem; font-weight: 500; color: var(--cyan-200); margin-bottom: 8px; }
-  .calc-box select, .calc-box input[type=range] {
-    width: 100%; margin-bottom: 20px;
-  }
-  .calc-box select {
-    background: rgba(255,255,255,0.12); color: white;
-    border: 1px solid rgba(255,255,255,0.2); border-radius: 10px;
-    padding: 10px 14px; font-family: inherit; font-size: 0.9rem;
-  }
-  .calc-box select option { background: var(--cyan-800); }
-  .range-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-  .range-row span { font-size: 0.85rem; color: var(--cyan-200); }
-  .range-val { font-family: 'Syne', sans-serif; font-weight: 700; color: white; font-size: 1rem; }
-  input[type=range] { accent-color: var(--cyan-300); }
-  .calc-result {
-    background: rgba(255,255,255,0.15); border-radius: 12px;
-    padding: 20px; display: flex; justify-content: space-between; align-items: center;
-    margin-top: 8px;
-  }
-  .calc-result .label { font-size: 0.85rem; color: var(--cyan-200); }
-  .calc-result .value { font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 800; color: white; }
-  .calc-btn {
-    width: 100%; margin-top: 16px; padding: 14px;
-    background: var(--cyan-400); color: white; border: none; border-radius: 12px;
-    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem;
-    cursor: pointer; transition: 0.2s;
-  }
-  .calc-btn:hover { background: var(--cyan-300); color: var(--cyan-900); }
+  /* ── RENTAL PRICING ── */
+  .rental { background: linear-gradient(180deg, var(--white) 0%, var(--cyan-50) 100%); }
+  .pricing-wrapper { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 40px; }
+  .price-card { background: var(--white); padding: 32px; border-radius: 20px; border: 2px solid var(--cyan-100); text-align: center; position: relative; }
+  .price-card.popular { border-color: var(--cyan-400); box-shadow: var(--shadow-lg); transform: scale(1.02); }
+  .badge-popular { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--cyan-500); color: white; padding: 4px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; }
+  .price-unit { font-size: 1.4rem; font-weight: 700; color: var(--dark); margin-bottom: 4px; }
+  .price-type { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 24px; }
+  .price-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--cyan-50); font-size: 0.95rem; }
+  .price-row:last-child { border-bottom: none; font-weight: 700; color: var(--cyan-700); margin-top: 12px; font-size: 1.1rem; }
+  .rental-features { margin-top: 40px; display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; }
+  .feature-tag { background: var(--white); padding: 10px 20px; border-radius: 50px; border: 1px solid var(--cyan-200); display: flex; align-items: center; gap: 8px; color: var(--cyan-800); font-weight: 500; }
 
-  /* ── TESTIMONIALS ── */
-  .testimonials { background: var(--sky-50); }
-  .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
-  .testi-card {
-    background: white; border-radius: var(--radius); padding: 28px;
-    border: 1px solid var(--cyan-100); box-shadow: var(--shadow);
-  }
-  .testi-stars { color: #f59e0b; font-size: 1rem; margin-bottom: 14px; letter-spacing: 2px; }
-  .testi-text { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 20px; font-style: italic; line-height: 1.7; }
-  .testi-user { display: flex; align-items: center; gap: 12px; }
-  .testi-avatar {
-    width: 42px; height: 42px; border-radius: 50%;
-    background: linear-gradient(135deg, var(--cyan-300), var(--cyan-500));
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 700; color: white; font-size: 0.9rem;
-  }
-  .testi-name { font-weight: 600; font-size: 0.9rem; color: var(--dark); }
-  .testi-loc { font-size: 0.8rem; color: var(--text-muted); }
+  /* ── GALLERY ── */
+  .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; margin-top: 40px; }
+  .gallery-item { border-radius: var(--radius); overflow: hidden; position: relative; aspect-ratio: 4/3; cursor: pointer; }
+  .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+  .gallery-item:hover img { transform: scale(1.1); }
+  .gallery-overlay { position: absolute; inset: 0; background: rgba(6,182,212,0.8); display: flex; align-items: center; justify-content: center; opacity: 0; transition: 0.3s; }
+  .gallery-item:hover .gallery-overlay { opacity: 1; }
+  .gallery-text { color: white; font-weight: 600; font-family: 'Syne', sans-serif; font-size: 1.2rem; }
 
-  /* ── WHY US ── */
-  .why { background: white; }
-  .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-  .why-list { display: flex; flex-direction: column; gap: 24px; }
-  .why-item { display: flex; gap: 16px; }
-  .why-num {
-    width: 40px; height: 40px; border-radius: 10px;
-    background: var(--cyan-100); color: var(--cyan-700);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem;
-    flex-shrink: 0;
-  }
-  .why-content h4 { font-family: 'Syne', sans-serif; font-weight: 700; margin-bottom: 6px; color: var(--dark); }
-  .why-content p { font-size: 0.9rem; color: var(--text-muted); }
-  .why-visual {
-    background: linear-gradient(135deg, var(--cyan-50) 0%, var(--cyan-100) 100%);
-    border-radius: 24px; padding: 40px; border: 1px solid var(--cyan-200);
-  }
-  .why-stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .why-stat {
-    background: white; border-radius: 14px; padding: 24px 20px;
-    text-align: center; border: 1px solid var(--cyan-100);
-    box-shadow: 0 2px 12px rgba(6,182,212,0.08);
-  }
-  .why-stat-icon { font-size: 2rem; margin-bottom: 12px; }
-  .why-stat-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.8rem; color: var(--cyan-600); }
-  .why-stat-label { font-size: 0.8rem; color: var(--text-muted); margin-top: 4px; }
+  /* ── WHY US & FAQ ── */
+  .why-us-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; }
+  .faq-item { background: var(--white); border-radius: 12px; margin-bottom: 12px; border: 1px solid var(--cyan-100); overflow: hidden; }
+  .faq-question { width: 100%; text-align: left; padding: 20px; background: none; border: none; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; color: var(--text-main); cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+  .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; padding: 0 20px; background: var(--sky-50); }
+  .faq-answer p { padding-bottom: 20px; color: var(--text-muted); font-size: 0.95rem; }
+  .faq-item.active .faq-answer { max-height: 200px; }
+  .faq-item.active .faq-question { color: var(--cyan-600); background: var(--cyan-50); }
+  .icon-toggle { transition: 0.3s; font-size: 1.2rem; }
+  .faq-item.active .icon-toggle { transform: rotate(45deg); }
 
-  /* ── AREA ── */
-  .area { background: var(--sky-50); }
-  .area-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; align-items: start; }
-  .area-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
-  .area-tag {
-    background: white; border: 1px solid var(--cyan-200); color: var(--cyan-700);
-    padding: 8px 18px; border-radius: 100px; font-size: 0.85rem; font-weight: 500;
-    transition: 0.2s;
-  }
-  .area-tag:hover { background: var(--cyan-500); color: white; border-color: var(--cyan-500); }
-  .map-box {
-    border-radius: 20px; overflow: hidden; height: 360px;
-    border: 2px solid var(--cyan-200); box-shadow: var(--shadow);
-  }
-  .map-box iframe { width: 100%; height: 100%; border: none; }
-
-  /* ── TIPS ── */
-  .tips { background: white; }
-  .tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
-  .tip-card {
-    background: var(--sky-50); border-radius: var(--radius);
-    padding: 28px; border: 1px solid var(--cyan-100); transition: 0.3s;
-  }
-  .tip-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
-  .tip-num {
-    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.5rem;
-    color: var(--cyan-100); margin-bottom: 8px; line-height: 1;
-  }
-  .tip-card h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 10px; color: var(--dark); }
-  .tip-card p { font-size: 0.9rem; color: var(--text-muted); }
-
-  /* ── PAYMENT ── */
-  .payment { background: var(--cyan-50); padding: 48px 5%; }
-  .pay-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
-  .pay-label { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--dark); }
-  .pay-methods { display: flex; gap: 12px; flex-wrap: wrap; }
-  .pay-chip {
-    background: white; border: 1px solid var(--cyan-200); color: var(--cyan-700);
-    padding: 8px 20px; border-radius: 100px; font-size: 0.85rem; font-weight: 500;
-  }
+  /* ── CONTACT & MAP ── */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 40px; margin-top: 40px; }
+  .contact-info-card { background: var(--white); padding: 32px; border-radius: var(--radius); border: 1px solid var(--cyan-100); }
+  .contact-row { display: flex; gap: 16px; margin-bottom: 24px; }
+  .contact-icon { width: 40px; height: 40px; background: var(--cyan-100); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--cyan-600); font-size: 1.2rem; flex-shrink: 0; }
+  .map-container { border-radius: var(--radius); overflow: hidden; height: 100%; min-height: 400px; border: 2px solid var(--cyan-200); box-shadow: var(--shadow); }
+  .map-container iframe { width: 100%; height: 100%; border: 0; }
 
   /* ── FOOTER ── */
-  footer {
-    background: var(--dark); color: #94a3b8;
-    padding: 64px 5% 32px;
-  }
-  .footer-inner { max-width: 1200px; margin: 0 auto; }
-  .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
-  .footer-brand {
-    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.2rem;
-    color: white; display: flex; align-items: center; gap: 10px; margin-bottom: 16px;
-  }
-  .footer-brand .logo-icon { background: linear-gradient(135deg, var(--cyan-400), var(--cyan-600)); }
-  .footer-about { font-size: 0.9rem; line-height: 1.7; margin-bottom: 24px; }
-  .footer-contact { font-size: 0.9rem; }
-  .footer-contact p { margin-bottom: 8px; }
-  .footer-contact a { color: var(--cyan-400); text-decoration: none; }
-  .footer-col h4 { font-family: 'Syne', sans-serif; font-weight: 700; color: white; margin-bottom: 20px; font-size: 1rem; }
-  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-  .footer-col ul a { color: #94a3b8; text-decoration: none; font-size: 0.9rem; transition: 0.2s; }
-  .footer-col ul a:hover { color: var(--cyan-400); }
-  .footer-bottom {
-    border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px;
-    display: flex; justify-content: space-between; align-items: center;
-    font-size: 0.85rem; flex-wrap: wrap; gap: 12px;
-  }
+  footer { background: var(--dark); color: #94a3b8; padding: 60px 5% 30px; }
+  .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; }
+  .footer-logo { font-family: 'Syne', sans-serif; font-size: 1.5rem; color: white; font-weight: 800; margin-bottom: 20px; display: block; }
+  .footer-links li { margin-bottom: 12px; list-style: none; }
+  .footer-links a { color: #cbd5e1; text-decoration: none; transition: 0.2s; }
+  .footer-links a:hover { color: var(--cyan-400); }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; font-size: 0.9rem; }
 
-  /* ── WHATSAPP FAB ── */
+  /* ── FAB WHATSAPP ── */
   .wa-fab {
-    position: fixed; bottom: 28px; right: 28px; z-index: 200;
-    width: 56px; height: 56px; background: #25d366; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 4px 20px rgba(37,211,102,0.5);
-    text-decoration: none; transition: 0.2s;
-    animation: float 3s ease-in-out infinite;
+    position: fixed; bottom: 30px; right: 30px; z-index: 999;
+    width: 60px; height: 60px; background: #25D366; color: white;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4); text-decoration: none;
+    transition: 0.3s;
   }
-  .wa-fab:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,0.6); }
-  .wa-fab svg { width: 28px; height: 28px; fill: white; }
+  .wa-fab:hover { transform: scale(1.1); }
 
   /* ── RESPONSIVE ── */
-  @media (max-width: 900px) {
-    .hero-inner { grid-template-columns: 1fr; }
-    .hero-visual { display: none; }
-    .calc-inner { grid-template-columns: 1fr; }
-    .why-grid { grid-template-columns: 1fr; }
-    .area-grid { grid-template-columns: 1fr; }
-    .footer-grid { grid-template-columns: 1fr 1fr; }
-  }
-  @media (max-width: 640px) {
-    .nav-links { display: none; }
-    .hamburger { display: flex; }
-    .footer-grid { grid-template-columns: 1fr; }
-    .hero-stats { gap: 20px; }
+  @media (max-width: 768px) {
+    .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: white; flex-direction: column; padding: 20px; box-shadow: var(--shadow); }
+    .nav-links.active { display: flex; }
+    .mobile-toggle { display: block; }
+    .hero-stats { flex-wrap: wrap; gap: 20px; }
+    .why-us-grid, .contact-grid { grid-template-columns: 1fr; }
+    .hero-title { font-size: 2rem; }
+    .map-container { min-height: 300px; }
+    .brands-grid { gap: 20px; }
+    .brand-item { padding: 10px; width: 45%; } /* 2 logos per row on mobile */
   }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
+<!-- NAVBAR -->
 <nav>
-  <a class="nav-brand" href="#">
-    <div class="logo-icon">❄</div>
-    Sejuk Teknik AC
-  </a>
-  <ul class="nav-links">
-    <li><a href="#layanan">Layanan</a></li>
-    <li><a href="#kalkulator">Estimasi Harga</a></li>
-    <li><a href="#testimoni">Ulasan</a></li>
-    <li><a href="#area">Wilayah</a></li>
-    <li><a href="https://wa.me/6285817818216" class="nav-cta">WhatsApp Kami</a></li>
+  <a href="#" class="nav-brand">❄️ Sejuk Teknik AC</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home">Beranda</a></li>
+    <li><a href="#brands">Merk</a></li>
+    <li><a href="#rental">Rental AC</a></li>
+    <li><a href="#gallery">Galeri</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#contact">Kontak</a></li>
   </ul>
-  <button class="hamburger" onclick="this.nextSibling;"><span></span><span></span><span></span></button>
+  <button class="mobile-toggle" onclick="toggleMenu()">☰</button>
 </nav>
 
-<!-- HERO -->
-<section class="hero" id="beranda">
-  <div class="hero-inner">
-    <div class="hero-content">
-      <div class="hero-badge"><span></span> Teknisi Bersertifikat & Bergaransi</div>
-      <h1>Servis AC Profesional untuk <em>Jakarta & Depok</em></h1>
-      <p>Kami hadir memberikan solusi terbaik dalam pemasangan, perawatan, dan service AC serta instalasi kelistrikan. Teknisi berpengalaman, harga transparan, garansi kerja.</p>
-      <div class="hero-buttons">
-        <a href="https://wa.me/6285817818216" class="btn-primary">💬 Hubungi via WhatsApp</a>
-        <a href="#layanan" class="btn-outline">Lihat Layanan →</a>
-      </div>
-      <div class="hero-stats">
-        <div class="stat-item"><div class="stat-num">60+</div><div class="stat-label">Unit Terpasang</div></div>
-        <div class="stat-item"><div class="stat-num">100+</div><div class="stat-label">Pelanggan Puas</div></div>
-        <div class="stat-item"><div class="stat-num">5 Thn</div><div class="stat-label">Pengalaman</div></div>
-        <div class="stat-item"><div class="stat-num">4.9 ⭐</div><div class="stat-label">Rating</div></div>
-      </div>
+<!-- HERO SECTION -->
+<section class="hero" id="home">
+  <div class="container hero-inner">
+    <div class="hero-badge">📍 Melayani Seluruh JAKARTA</div>
+    <h1 class="hero-title">Solusi AC Dingin & Nyaman untuk <span>Rumah & Bisnis</span></h1>
+    <p class="hero-desc">Spesialis servis, cuci, bongkar pasang, dan rental AC profesional. Teknisi handal, harga transparan, dan bergaransi.</p>
+    <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+      <a href="https://wa.me/6285817818216" class="btn btn-primary">Hubungi WhatsApp</a>
+      <a href="#rental" class="btn btn-outline">Cek Harga Rental</a>
     </div>
-    <div class="hero-visual">
-      <div style="position:relative;width:100%;max-width:380px;">
-        <div class="ac-card">
-          <div class="ac-card-header">
-            <div class="ac-temp">24°C</div>
-            <div>
-              <div class="ac-status"><strong>AC Ruang Tamu</strong><span>Sedang Berjalan Normal</span></div>
-            </div>
-          </div>
-          <div style="background:var(--cyan-50);border-radius:12px;padding:16px;margin-bottom:20px;">
-            <div style="display:flex;justify-content:space-between;font-size:0.85rem;color:var(--text-muted);margin-bottom:8px;"><span>Suhu Ruangan</span><span style="color:var(--cyan-600);font-weight:600;">22°C</span></div>
-            <div style="height:6px;background:var(--cyan-100);border-radius:3px;overflow:hidden;"><div style="width:68%;height:100%;background:linear-gradient(90deg,var(--cyan-400),var(--cyan-600));border-radius:3px;"></div></div>
-          </div>
-          <div class="ac-controls">
-            <div class="ac-btn active">❄ Cool</div>
-            <div class="ac-btn">💨 Fan</div>
-            <div class="ac-btn">♻ Auto</div>
-            <div class="ac-btn">🌬 Dry</div>
-          </div>
-        </div>
-        <div class="float-badge top-right">
-          <div class="dot dot-green"></div>
-          <span style="font-size:0.8rem;color:var(--text-main);">Garansi Aktif</span>
-        </div>
-        <div class="float-badge bottom-left">
-          <div class="dot dot-cyan"></div>
-          <span style="font-size:0.8rem;color:var(--text-main);">Teknisi Online 09:00–21:00</span>
-        </div>
+    <div class="hero-stats">
+      <div class="stat-item"><strong>5+</strong><span>Tahun Pengalaman</span></div>
+      <div class="stat-item"><strong>1000+</strong><span>Unit Terlayani</span></div>
+      <div class="stat-item"><strong>100%</strong><span>Area Jakarta</span></div>
+      <div class="stat-item"><strong>4.9</strong><span>Rating Pelanggan</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- BRANDS SECTION (UPDATED WITH LOGOS) -->
+<section class="brands" id="brands">
+  <div class="container">
+    <div class="text-center">
+      <span class="section-tag">Spesialisasi</span>
+      <h2 style="margin-bottom: 30px;">Merk AC yang Kami Kerjakan</h2>
+    </div>
+    <div class="brands-grid">
+      <!-- LG -->
+      <div class="brand-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/LG_logo.svg/2560px-LG_logo.svg.png" alt="LG Logo">
+        <span class="brand-fallback">LG</span>
+      </div>
+      <!-- Daikin -->
+      <div class="brand-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Daikin_logo.svg/2560px-Daikin_logo.svg.png" alt="Daikin Logo">
+        <span class="brand-fallback">Daikin</span>
+      </div>
+      <!-- Sharp -->
+      <div class="brand-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Sharp_Corporation_logo.svg/2560px-Sharp_Corporation_logo.svg.png" alt="Sharp Logo">
+        <span class="brand-fallback">Sharp</span>
+      </div>
+      <!-- Toshiba -->
+      <div class="brand-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Toshiba_logo.svg/2560px-Toshiba_logo.svg.png" alt="Toshiba Logo">
+        <span class="brand-fallback">Toshiba</span>
+      </div>
+      <!-- Panasonic -->
+      <div class="brand-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Panasonic_logo_%28Blue%29.svg/2560px-Panasonic_logo_%28Blue%29.svg.png" alt="Panasonic Logo">
+        <span class="brand-fallback">Panasonic</span>
+      </div>
+      <!-- Samsung -->
+      <div class="brand-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Samsung_Logo.svg/2560px-Samsung_Logo.svg.png" alt="Samsung Logo">
+        <span class="brand-fallback">Samsung</span>
+      </div>
+      <!-- Haier -->
+      <div class="brand-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Haier_logo.svg/2560px-Haier_logo.svg.png" alt="Haier Logo">
+        <span class="brand-fallback">Haier</span>
+      </div>
+      <!-- Akari -->
+      <div class="brand-item">
+        <!-- Fallback mechanism for Akari as external logos can be unstable -->
+        <img src="https://logos-world.net/wp-content/uploads/2022/06/Akari-Logo.png" alt="Akari Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <span class="brand-fallback" style="display:block; font-family:'Syne'; font-weight:700; color:var(--text-muted);">AKARI</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SERVICES -->
-<section class="services" id="layanan">
-  <div class="section-inner">
-    <div class="section-head">
+<!-- SERVICES SECTION -->
+<section class="section-padding">
+  <div class="container">
+    <div class="text-center">
       <span class="section-tag">Layanan Kami</span>
-      <h2 class="section-title">Semua Kebutuhan AC Anda</h2>
-      <p class="section-sub">Dari instalasi baru hingga perbaikan darurat, kami siap melayani dengan profesional dan harga terjangkau.</p>
+      <h2 class="section-title">Solusi Lengkap Kebutuhan AC</h2>
+      <p class="section-desc">Kami menangani segala masalah AC Anda dengan teknisi tersertifikasi.</p>
     </div>
     <div class="services-grid">
       <div class="service-card">
-        <div class="service-icon">🔧</div>
-        <h3>Service AC</h3>
-        <p>Perbaikan menyeluruh oleh teknisi bersertifikat. Diagnosa akurat, hasil optimal, dan bergaransi.</p>
-        <a href="https://wa.me/6285817818216" class="service-link">Pesan Sekarang →</a>
+        <div class="service-icon">🛠️</div>
+        <h3>Service & Perbaikan</h3>
+        <p>Perbaikan AC mati total, tidak dingin, bocor, atau error dengan diagnosa akurat dan suku cadang asli.</p>
+        <a href="https://wa.me/6285817818216" class="service-link">Pesan Service →</a>
       </div>
       <div class="service-card">
         <div class="service-icon">🚿</div>
-        <h3>Cuci AC</h3>
-        <p>Pembersihan menyeluruh unit indoor dan outdoor. Mengoptimalkan performa dan efisiensi energi AC Anda.</p>
-        <a href="https://wa.me/6285817818216" class="service-link">Pesan Sekarang →</a>
+        <h3>Cuci AC Deep Clean</h3>
+        <p>Pembersihan evaporator, kondensor, dan drainase secara menyeluruh untuk mengembalikan ke-dinginan.</p>
+        <a href="https://wa.me/6285817818216" class="service-link">Pesan Cuci →</a>
       </div>
       <div class="service-card">
-        <div class="service-icon">❄</div>
+        <div class="service-icon">🔌</div>
+        <h3>Bongkar Pasang AC</h3>
+        <p>Instalasi AC baru atau pemindahan lokasi AC lama dengan pemasangan pipa dan kelistrikan rapi.</p>
+        <a href="https://wa.me/6285817818216" class="service-link">Konsultasi →</a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">💧</div>
         <h3>Isi Freon</h3>
-        <p>Pengisian freon R32 & R410A oleh teknisi bersertifikat dengan alat ukur profesional dan takaran tepat.</p>
-        <a href="https://wa.me/6285817818216" class="service-link">Pesan Sekarang →</a>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">📦</div>
-        <h3>Pasang AC Baru</h3>
-        <p>Instalasi AC baru dengan penempatan optimal, pemasangan pipa, dan setting awal oleh teknisi berpengalaman.</p>
-        <a href="https://wa.me/6285817818216" class="service-link">Pesan Sekarang →</a>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">🏕</div>
-        <h3>Sewa AC</h3>
-        <p>Sewa unit AC berkualitas untuk acara, pameran, atau kebutuhan sementara dengan harga yang fleksibel.</p>
-        <a href="https://wa.me/6285817818216" class="service-link">Pesan Sekarang →</a>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">⚡</div>
-        <h3>Instalasi Listrik</h3>
-        <p>Pemasangan panel distribusi, kabel daya, dan grounding yang aman sesuai standar PLN dan SNI.</p>
-        <a href="https://wa.me/6285817818216" class="service-link">Pesan Sekarang →</a>
+        <p>Pengisian ulang freon R32, R410, dan R22 menggunakan timbangan digital agar presisi.</p>
+        <a href="https://wa.me/6285817818216" class="service-link">Isi Freon →</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CALCULATOR -->
-<section class="calculator" id="kalkulator">
-  <div class="section-inner">
-    <div class="calc-inner">
-      <div class="calc-info">
-        <span class="section-tag">Simulasi Harga</span>
-        <h2 class="section-title">Estimasi Biaya Pemasangan AC</h2>
-        <p class="section-sub" style="color:var(--cyan-100);">Hitung perkiraan biaya pemasangan AC sesuai kebutuhan Anda. Harga final akan dikonfirmasi oleh teknisi kami.</p>
-        <div style="margin-top:32px;display:flex;flex-direction:column;gap:16px;">
-          <div style="display:flex;align-items:center;gap:12px;color:var(--cyan-200);font-size:0.9rem;">
-            <span style="font-size:1.2rem;">✅</span> Harga transparan, tidak ada biaya tersembunyi
+<!-- RENTAL AC SECTION -->
+<section class="section-padding rental" id="rental">
+  <div class="container">
+    <div class="text-center">
+      <span class="section-tag">Sewa Harian & Bulanan</span>
+      <h2 class="section-title">Daftar Harga Rental AC Sejuk Teknik</h2>
+      <p class="section-desc">Butuh AC dadakan untuk acara, kantor, atau rumah? Kami sediakan unit terawat dengan harga bersaing.</p>
+    </div>
+
+    <div class="pricing-wrapper">
+      <!-- PK 0.5 -->
+      <div class="price-card">
+        <div class="price-unit">AC 0.5 PK</div>
+        <div class="price-type">Cocok untuk Ruangan Kecil (< 15m²)</div>
+        <div class="price-row"><span>Harian</span><span>Rp 75.000</span></div>
+        <div class="price-row"><span>Mingguan</span><span>Rp 450.000</span></div>
+        <div class="price-row"><span>Bulanan</span><span>Rp 900.000</span></div>
+        <a href="https://wa.me/6285817818216?text=Halo,%20saya%20mau%20tanya%20rental%20AC%200.5%20PK" class="btn btn-outline" style="margin-top:20px; width:100%; justify-content:center;">Pesan Sekarang</a>
+      </div>
+
+      <!-- PK 1 -->
+      <div class="price-card popular">
+        <div class="badge-popular">Paling Laris</div>
+        <div class="price-unit">AC 1 PK</div>
+        <div class="price-type">Standar Ruang Tamu / Kantor (15-25m²)</div>
+        <div class="price-row"><span>Harian</span><span>Rp 100.000</span></div>
+        <div class="price-row"><span>Mingguan</span><span>Rp 600.000</span></div>
+        <div class="price-row"><span>Bulanan</span><span>Rp 1.200.000</span></div>
+        <a href="https://wa.me/6285817818216?text=Halo,%20saya%20mau%20tanya%20rental%20AC%201%20PK" class="btn btn-primary" style="margin-top:20px; width:100%; justify-content:center;">Pesan Sekarang</a>
+      </div>
+
+      <!-- PK 2 -->
+      <div class="price-card">
+        <div class="price-unit">AC 2 PK</div>
+        <div class="price-type">Untuk Aula / Gedung Besar (> 25m²)</div>
+        <div class="price-row"><span>Harian</span><span>Rp 200.000</span></div>
+        <div class="price-row"><span>Mingguan</span><span>Rp 1.200.000</span></div>
+        <div class="price-row"><span>Bulanan</span><span>Rp 2.400.000</span></div>
+        <a href="https://wa.me/6285817818216?text=Halo,%20saya%20mau%20tanya%20rental%20AC%202%20PK" class="btn btn-outline" style="margin-top:20px; width:100%; justify-content:center;">Pesan Sekarang</a>
+      </div>
+    </div>
+
+    <div class="rental-features">
+      <div class="feature-tag">✅ Gratis Biaya Pemasangan</div>
+      <div class="feature-tag">✅ Free Maintenance Selama Sewa</div>
+      <div class="feature-tag">✅ Unit Standar Baru & Terawat</div>
+      <div class="feature-tag">✅ Teknisi Standby 24 Jam</div>
+    </div>
+
+    <div style="margin-top: 60px; background: white; padding: 40px; border-radius: var(--radius); border: 1px solid var(--cyan-100);">
+      <h3 style="margin-bottom: 20px;">Kenapa Memilih Jasa Rental AC Sejuk Teknik?</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+        <div>
+          <h4 style="color: var(--cyan-700); margin-bottom: 8px;">1. Unit Selalu Ready</h4>
+          <p style="font-size: 0.9rem; color: var(--text-muted);">Kami memiliki stok unit yang memadai untuk acara mendadak atau kebutuhan kontrak jangka panjang.</p>
+        </div>
+        <div>
+          <h4 style="color: var(--cyan-700); margin-bottom: 8px;">2. Harga Transparan</h4>
+          <p style="font-size: 0.9rem; color: var(--text-muted);">Apa yang Anda lihat adalah apa yang Anda bayar. Tidak ada biaya tersembunyi saat pemasangan atau pengembalian.</p>
+        </div>
+        <div>
+          <h4 style="color: var(--cyan-700); margin-bottom: 8px;">3. Pelayanan Cepat</h4>
+          <p style="font-size: 0.9rem; color: var(--text-muted);">Pemesanan melalui WhatsApp diproses cepat. Teknisi kami siap antar dan pasang di lokasi Anda segera.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY SECTION -->
+<section class="section-padding" id="gallery" style="background: var(--white);">
+  <div class="container">
+    <div class="text-center">
+      <span class="section-tag">Dokumentasi</span>
+      <h2 class="section-title">Galeri Pengerjaan Kami</h2>
+      <p class="section-desc">Lihat bagaimana tim kami bekerja secara profesional.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="https://picsum.photos/seed/ac1/400/300" alt="Servis AC">
+        <div class="gallery-overlay"><div class="gallery-text">Service Rutin</div></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://picsum.photos/seed/ac2/400/300" alt="Cuci AC">
+        <div class="gallery-overlay"><div class="gallery-text">Cuci Deep Clean</div></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://picsum.photos/seed/ac3/400/300" alt="Instalasi AC">
+        <div class="gallery-overlay"><div class="gallery-text">Instalasi Baru</div></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://picsum.photos/seed/ac4/400/300" alt="Rental AC Event">
+        <div class="gallery-overlay"><div class="gallery-text">Rental Event</div></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://picsum.photos/seed/ac5/400/300" alt="Perbaikan Kelistrikan">
+        <div class="gallery-overlay"><div class="gallery-text">Instalasi Listrik</div></div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://picsum.photos/seed/ac6/400/300" alt="Teknisi Kami">
+        <div class="gallery-overlay"><div class="gallery-text">Tim Profesional</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ & SUPPORT SECTION -->
+<section class="section-padding" style="background: var(--sky-50);">
+  <div class="container">
+    <div class="why-us-grid">
+      <div>
+        <span class="section-tag">Bantuan</span>
+        <h2 class="section-title">Dukungan Pelayanan</h2>
+        <p style="margin-bottom: 20px; color: var(--text-muted);">Kami tidak hanya memperbaiki, kami juga memberikan dukungan penuh setelah pengerjaan.</p>
+        
+        <div style="margin-bottom: 30px;">
+          <h4 style="margin-bottom: 10px; display: flex; gap: 10px;">📞 Layanan Darurat</h4>
+          <p style="font-size: 0.9rem; color: var(--text-muted);">AC mati di malam hari? Hubungi kami untuk penjadwalan darurat khusus area Jakarta.</p>
+        </div>
+        <div style="margin-bottom: 30px;">
+          <h4 style="margin-bottom: 10px; display: flex; gap: 10px;">🛡️ Garansi Resmi</h4>
+          <p style="font-size: 0.9rem; color: var(--text-muted);">Setiap service dan bongkar pasang mendapatkan garansi toko hingga 30 hari (tergantung jenis kerusakan).</p>
+        </div>
+        
+        <div style="background: white; padding: 20px; border-radius: 12px; border-left: 4px solid var(--cyan-500);">
+          <strong style="color: var(--cyan-700);">Ulasan Pelanggan:</strong>
+          <p style="font-style: italic; margin-top: 5px; font-size: 0.9rem;">"Pelayanan sangat cepat, teknisi ramah dan AC saya jadi dingin kembali. Mantap Sejuk Teknik!" <br><strong>— Ibu Hartini, Kelapa Gading</strong></p>
+        </div>
+      </div>
+
+      <div>
+        <span class="section-tag">Informasi</span>
+        <h2 class="section-title">FAQ (Tanya Jawab)</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              Apakah Sejuk Teknik melayani area luar Jakarta?
+              <span class="icon-toggle">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Maaf, saat ini kami fokus melayani area DKI Jakarta saja (Jakarta Utara, Selatan, Barat, Timur, dan Pusat) untuk memberikan respon yang maksimal.</p>
+            </div>
           </div>
-          <div style="display:flex;align-items:center;gap:12px;color:var(--cyan-200);font-size:0.9rem;">
-            <span style="font-size:1.2rem;">✅</span> Garansi pemasangan 90 hari
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              Berapa lama garansi service AC?
+              <span class="icon-toggle">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Kami memberikan garansi service selama 14 hari (2 minggu) untuk kerusakan yang sama dan garansi sparepart sesuai ketentuan pabrikan.</p>
+            </div>
           </div>
-          <div style="display:flex;align-items:center;gap:12px;color:var(--cyan-200);font-size:0.9rem;">
-            <span style="font-size:1.2rem;">✅</span> Teknisi datang ke lokasi untuk estimasi gratis
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              Apakah harga sewa AC sudah termasuk pemasangan?
+              <span class="icon-toggle">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Ya, harga rental yang tertera di website sudah termasuk gratis biaya antar, pasang, dan bongkar kembali di akhir masa sewa.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              Berapa minimal pembayaran untuk rental?
+              <span class="icon-toggle">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Minimal sewa adalah 3 hari untuk harian. Jika Anda sewa bulanan, pembayaran bisa diangsur DP 50% di awal.</p>
+            </div>
           </div>
         </div>
       </div>
-      <div class="calc-box">
-        <label>Jenis AC</label>
-        <select id="ac-type" onchange="hitungEstimasi()">
-          <option value="500000">Standard ½ PK</option>
-          <option value="650000">Medium ¾ PK</option>
-          <option value="800000">Large 1 PK</option>
-          <option value="1200000">Extra Large 2 PK</option>
-        </select>
-        <div class="range-row">
-          <label>Panjang Pipa (meter)</label>
-          <span class="range-val" id="pipa-val">5 m</span>
-        </div>
-        <input type="range" min="1" max="20" value="5" id="pipa" oninput="document.getElementById('pipa-val').textContent=this.value+' m';hitungEstimasi()">
-        <div class="range-row">
-          <label>Luas Ruangan (m²)</label>
-          <span class="range-val" id="luas-val">20 m²</span>
-        </div>
-        <input type="range" min="9" max="60" value="20" id="luas" oninput="document.getElementById('luas-val').textContent=this.value+' m²';hitungEstimasi()">
-        <div class="calc-result">
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT & MAP SECTION -->
+<section class="section-padding" id="contact" style="background: var(--white);">
+  <div class="container">
+    <div class="text-center">
+      <span class="section-tag">Hubungi Kami</span>
+      <h2 class="section-title">Lokasi & Kontak</h2>
+      <p class="section-desc">Kunjungi kantor kami atau hubungi kami untuk survei lokasi gratis.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-info-card">
+        <h3 style="margin-bottom: 24px;">Informasi Kontak</h3>
+        <div class="contact-row">
+          <div class="contact-icon">📍</div>
           <div>
-            <div class="label">Estimasi Biaya</div>
-            <div class="value" id="estimasi-result">Rp 625.000</div>
-          </div>
-          <div style="text-align:right;">
-            <div class="label">Waktu Pengerjaan</div>
-            <div class="value" style="font-size:1.1rem;" id="waktu-result">2–3 Jam</div>
+            <strong>Alamat Workshop:</strong>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">Jl. Gereja, Tugu Sel., Kec. Klp. Gading, Jkt Utara, Daerah Khusus Ibukota Jakarta, Indonesia</p>
           </div>
         </div>
-        <a href="https://wa.me/6285817818216" class="calc-btn" style="display:block;text-align:center;text-decoration:none;">
-          Konsultasi & Booking Sekarang →
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- WHY US -->
-<section class="why" id="tentang">
-  <div class="section-inner">
-    <div class="why-grid">
-      <div>
-        <span class="section-tag">Mengapa Kami</span>
-        <h2 class="section-title">Dipercaya Ratusan Pelanggan di Jabodetabek</h2>
-        <p class="section-sub" style="margin-bottom:40px;">Kami bukan sekadar teknisi. Kami adalah mitra perawatan AC jangka panjang untuk rumah dan bisnis Anda.</p>
-        <div class="why-list">
-          <div class="why-item"><div class="why-num">01</div><div class="why-content"><h4>Teknisi Bersertifikat</h4><p>Semua teknisi kami bersertifikat resmi dan dilatih secara berkala untuk memastikan kualitas terbaik.</p></div></div>
-          <div class="why-item"><div class="why-num">02</div><div class="why-content"><h4>Garansi Pekerjaan</h4><p>Setiap pekerjaan kami berikan garansi. Jika ada masalah dalam periode garansi, kami kembali tanpa biaya tambahan.</p></div></div>
-          <div class="why-item"><div class="why-num">03</div><div class="why-content"><h4>Harga Transparan</h4><p>Tidak ada biaya kejutan. Estimasi diberikan sebelum pekerjaan dimulai, dan Anda bisa menyetujui atau membatalkan.</p></div></div>
-          <div class="why-item"><div class="why-num">04</div><div class="why-content"><h4>Respon Cepat</h4><p>Kami merespons dalam hitungan menit dan siap datang ke lokasi di hari yang sama untuk kasus darurat.</p></div></div>
+        <div class="contact-row">
+          <div class="contact-icon">📞</div>
+          <div>
+            <strong>Telepon / WhatsApp:</strong>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">0858-1781-8216</p>
+          </div>
         </div>
-      </div>
-      <div class="why-visual">
-        <div class="why-stat-grid">
-          <div class="why-stat"><div class="why-stat-icon">🏆</div><div class="why-stat-num">5+</div><div class="why-stat-label">Tahun Pengalaman</div></div>
-          <div class="why-stat"><div class="why-stat-icon">😊</div><div class="why-stat-num">100+</div><div class="why-stat-label">Pelanggan Puas</div></div>
-          <div class="why-stat"><div class="why-stat-icon">❄</div><div class="why-stat-num">60+</div><div class="why-stat-label">Unit Terpasang</div></div>
-          <div class="why-stat"><div class="why-stat-icon">⭐</div><div class="why-stat-num">4.9</div><div class="why-stat-label">Rating Rata-rata</div></div>
+        <div class="contact-row">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <strong>Email:</strong>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">jayatehnikmandiri234@gmail.com</p>
+          </div>
         </div>
-        <div style="margin-top:20px;background:white;border-radius:14px;padding:20px;border:1px solid var(--cyan-100);">
-          <div style="font-size:0.8rem;color:var(--text-muted);margin-bottom:12px;font-weight:500;">PEMBAYARAN DITERIMA</div>
-          <div style="display:flex;gap:8px;flex-wrap:wrap;">
-            <span style="background:var(--cyan-50);color:var(--cyan-700);padding:6px 14px;border-radius:100px;font-size:0.8rem;font-weight:500;border:1px solid var(--cyan-200);">DANA</span>
-            <span style="background:var(--cyan-50);color:var(--cyan-700);padding:6px 14px;border-radius:100px;font-size:0.8rem;font-weight:500;border:1px solid var(--cyan-200);">BCA</span>
-            <span style="background:var(--cyan-50);color:var(--cyan-700);padding:6px 14px;border-radius:100px;font-size:0.8rem;font-weight:500;border:1px solid var(--cyan-200);">BRI</span>
-            <span style="background:var(--cyan-50);color:var(--cyan-700);padding:6px 14px;border-radius:100px;font-size:0.8rem;font-weight:500;border:1px solid var(--cyan-200);">Mandiri</span>
-            <span style="background:var(--cyan-50);color:var(--cyan-700);padding:6px 14px;border-radius:100px;font-size:0.8rem;font-weight:500;border:1px solid var(--cyan-200);">Tunai</span>
+        <div class="contact-row">
+          <div class="contact-icon">⏰</div>
+          <div>
+            <strong>Jam Operasional:</strong>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">Setiap Hari: 08:00 – 21:00 WIB</p>
+          </div>
+        </div>
+        
+        <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--cyan-100);">
+          <p style="font-size: 0.9rem; margin-bottom: 12px;">Wilayah Layanan:</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+            <span style="background: var(--cyan-50); color: var(--cyan-700); padding: 4px 12px; border-radius: 4px; font-size: 0.85rem;">Jakarta Utara</span>
+            <span style="background: var(--cyan-50); color: var(--cyan-700); padding: 4px 12px; border-radius: 4px; font-size: 0.85rem;">Jakarta Selatan</span>
+            <span style="background: var(--cyan-50); color: var(--cyan-700); padding: 4px 12px; border-radius: 4px; font-size: 0.85rem;">Jakarta Barat</span>
+            <span style="background: var(--cyan-50); color: var(--cyan-700); padding: 4px 12px; border-radius: 4px; font-size: 0.85rem;">Jakarta Timur</span>
+            <span style="background: var(--cyan-50); color: var(--cyan-700); padding: 4px 12px; border-radius: 4px; font-size: 0.85rem;">Jakarta Pusat</span>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
 
-<!-- TESTIMONIALS -->
-<section class="testimonials" id="testimoni">
-  <div class="section-inner">
-    <div class="section-head centered">
-      <span class="section-tag">Ulasan Pelanggan</span>
-      <h2 class="section-title">Apa Kata Mereka?</h2>
-      <p class="section-sub">Kepuasan pelanggan adalah prioritas utama kami dalam setiap pekerjaan.</p>
-    </div>
-    <div class="testi-grid">
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">"Teknisinya datang tepat waktu, ramah, dan bersih saat bekerja. AC saya yang sudah 3 tahun tidak pernah dicuci akhirnya kinclong lagi. Sangat puas!"</p>
-        <div class="testi-user"><div class="testi-avatar">BS</div><div><div class="testi-name">Budi Santoso</div><div class="testi-loc">Koja, Jakarta Utara</div></div></div>
-      </div>
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">"Harga transparan, tidak ada biaya dadakan. Saya order cuci 2 unit AC sekaligus, langsung ditangani 2 teknisi. Efisien dan hasilnya bagus sekali!"</p>
-        <div class="testi-user"><div class="testi-avatar">RA</div><div><div class="testi-name">Rina Agustina</div><div class="testi-loc">Tanjung Priok, Jakarta</div></div></div>
-      </div>
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">"AC kantor saya bocor dan tidak dingin, dihubungi Sejuk Teknik langsung direspons dan teknisi datang hari itu juga. Masalah selesai dalam 2 jam!"</p>
-        <div class="testi-user"><div class="testi-avatar">HW</div><div><div class="testi-name">Hendra Wijaya</div><div class="testi-loc">Depok, Jawa Barat</div></div></div>
+      <div class="map-container">
+        <!-- Menggunakan format embed query dengan alamat yang diberikan -->
+        <iframe 
+            src="https://maps.google.com/maps?q=Jl.%20Gereja,%20Tugu%20Sel.,%20Kec.%20Klp.%20Gading,%20Jkt%20Utara&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+            allowfullscreen="" 
+            loading="lazy">
+        </iframe>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- AREA -->
-<section class="area" id="area">
-  <div class="section-inner">
-    <div class="area-grid">
-      <div>
-        <span class="section-tag">Wilayah Layanan</span>
-        <h2 class="section-title">Kami Melayani Area Anda</h2>
-        <p class="section-sub">Sejuk Teknik AC melayani seluruh area Jakarta dan Depok dengan waktu respons cepat.</p>
-        <div class="area-tags">
-          <span class="area-tag">Jakarta Utara</span>
-          <span class="area-tag">Jakarta Barat</span>
-          <span class="area-tag">Jakarta Selatan</span>
-          <span class="area-tag">Jakarta Timur</span>
-          <span class="area-tag">Jakarta Pusat</span>
-          <span class="area-tag">Depok</span>
-          <span class="area-tag">Bekasi</span>
-          <span class="area-tag">Tangerang</span>
-          <span class="area-tag">Koja</span>
-          <span class="area-tag">Tanjung Priok</span>
-        </div>
-        <div style="margin-top:32px;">
-          <a href="https://wa.me/6285817818216" class="btn-primary">Cek Wilayah Anda →</a>
-        </div>
-      </div>
-      <div class="map-box">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322283!2d106.8195613506864!3d-6.194741395493371!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMTAnNDEuMSJTIDEwNsKwNDknMTAuMyJF!5e0!3m2!1sen!2sid!4v1621234567890!5m2!1sen!2sid" allowfullscreen="" loading="lazy"></iframe>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TIPS -->
-<section class="tips" id="tips">
-  <div class="section-inner">
-    <div class="section-head centered">
-      <span class="section-tag">Tips & Info</span>
-      <h2 class="section-title">Panduan Perawatan AC</h2>
-      <p class="section-sub">Informasi berguna untuk menjaga AC Anda tetap optimal sepanjang tahun.</p>
-    </div>
-    <div class="tips-grid">
-      <div class="tip-card">
-        <div class="tip-num">01</div>
-        <h3>5 Tanda AC Butuh Diservice</h3>
-        <p>Tidak dingin, suara aneh, bau apek, bocor air, atau tagihan listrik naik — itu semua tanda AC butuh perhatian profesional segera.</p>
-      </div>
-      <div class="tip-card">
-        <div class="tip-num">02</div>
-        <h3>R32 vs R410A: Apa Bedanya?</h3>
-        <p>Freon R32 lebih efisien dan ramah lingkungan dengan GWP lebih rendah. Mayoritas AC baru sudah menggunakan R32.</p>
-      </div>
-      <div class="tip-card">
-        <div class="tip-num">03</div>
-        <h3>Tips Merawat AC Tahan Lama</h3>
-        <p>Cuci filter setiap 1–2 bulan, atur suhu ideal 24–26°C, dan lakukan service profesional setahun sekali untuk umur AC yang panjang.</p>
-      </div>
+    <div class="text-center" style="margin-top: 30px;">
+      <a href="https://maps.app.goo.gl/vW48HuqdvTqzSN6JA" target="_blank" class="btn btn-outline">Buka di Google Maps ↗</a>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-inner">
+  <div class="container">
     <div class="footer-grid">
       <div>
-        <div class="footer-brand"><div class="logo-icon" style="width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-size:16px;">❄</div> Sejuk Teknik AC</div>
-        <p class="footer-about">Solusi AC dan kelistrikan profesional sejak 2020. Memberikan pelayanan terbaik dengan teknisi berpengalaman dan harga terjangkau untuk rumah dan bisnis Anda.</p>
-        <div class="footer-contact">
-          <p>📞 <a href="tel:085817818216">085817818216</a></p>
-          <p>✉️ <a href="mailto:jayatehnikmandiri234@gmail.com">jayatehnikmandiri234@gmail.com</a></p>
-          <p>🕐 Buka: 09:00 – 21:00 WIB</p>
-          <p>📍 Jl. Raya Perjuangan No.25, Tugu Selatan, Koja</p>
+        <a href="#" class="footer-logo">❄️ Sejuk Teknik AC</a>
+        <p style="margin-bottom: 20px; font-size: 0.9rem; line-height: 1.6;">Mitra terpercaya untuk solusi pendingin ruangan Anda. Melayani service, cuci, rental, dan instalasi AC di seluruh wilayah Jakarta dengan standar kualitas tinggi.</p>
+        <div style="display: flex; gap: 10px;">
+          <a href="https://wa.me/6285817818216" style="color: white; font-size: 1.5rem;">💬</a>
+          <a href="#" style="color: white; font-size: 1.5rem;">📷</a>
+          <a href="#" style="color: white; font-size: 1.5rem;">📘</a>
         </div>
       </div>
-      <div class="footer-col">
-        <h4>Menu</h4>
-        <ul>
-          <li><a href="#beranda">Beranda</a></li>
-          <li><a href="#layanan">Layanan</a></li>
-          <li><a href="#kalkulator">Estimasi Harga</a></li>
-          <li><a href="#tentang">Tentang Kami</a></li>
-          <li><a href="#testimoni">Ulasan</a></li>
+      <div>
+        <h4 style="color: white; margin-bottom: 20px;">Menu</h4>
+        <ul class="footer-links">
+          <li><a href="#home">Beranda</a></li>
+          <li><a href="#brands">Merk AC</a></li>
+          <li><a href="#rental">Harga Rental</a></li>
+          <li><a href="#gallery">Galeri</a></li>
+          <li><a href="#contact">Kontak</a></li>
         </ul>
       </div>
-      <div class="footer-col">
-        <h4>Layanan</h4>
-        <ul>
-          <li><a href="#">Pasang AC Baru</a></li>
-          <li><a href="#">Cuci AC</a></li>
+      <div>
+        <h4 style="color: white; margin-bottom: 20px;">Layanan</h4>
+        <ul class="footer-links">
           <li><a href="#">Service AC</a></li>
+          <li><a href="#">Cuci AC</a></li>
+          <li><a href="#">Bongkar Pasang</a></li>
           <li><a href="#">Isi Freon</a></li>
-          <li><a href="#">Sewa AC</a></li>
-          <li><a href="#">Instalasi Listrik</a></li>
+          <li><a href="#">Rental AC</a></li>
         </ul>
       </div>
-      <div class="footer-col">
-        <h4>Wilayah</h4>
-        <ul>
+      <div>
+        <h4 style="color: white; margin-bottom: 20px;">Area Jakarta</h4>
+        <ul class="footer-links">
           <li><a href="#">Jakarta Utara</a></li>
           <li><a href="#">Jakarta Selatan</a></li>
           <li><a href="#">Jakarta Barat</a></li>
           <li><a href="#">Jakarta Timur</a></li>
-          <li><a href="#">Depok</a></li>
-          <li><a href="#">Bekasi</a></li>
+          <li><a href="#">Jakarta Pusat</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2020–2025 Sejuk Teknik AC. All Rights Reserved.</span>
-      <span style="color:var(--cyan-400);">Melayani dengan sepenuh hati ❄</span>
+      <div>© 2024 Sejuk Teknik AC. All Rights Reserved.</div>
+      <div>Designed with 💙 in Jakarta</div>
     </div>
   </div>
 </footer>
 
-<!-- WA FAB -->
+<!-- FLOATING WA -->
 <a href="https://wa.me/6285817818216" class="wa-fab" target="_blank" title="Chat WhatsApp">
-  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.862L.057 23.143a.75.75 0 00.918.918l5.28-1.475A11.944 11.944 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.944 9.944 0 01-5.165-1.449l-.371-.22-3.835 1.072 1.072-3.835-.22-.371A9.944 9.944 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
-  </svg>
+  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="white"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm5.6 14.16c-.24.68-1.29 1.25-1.77 1.31-.46.05-.86.19-3.09-.69-2.56-.99-4.2-3.65-4.33-3.83-.13-.18-1.04-1.39-1.04-2.65 0-1.25.64-1.88.88-2.15.24-.27.53-.34.71-.34.18 0 .36.01.51.04.17.04.4.08.61.51.24.48.82 2.01.89 2.16.07.15.12.33.02.52-.1.19-.15.31-.3.47-.15.16-.32.36-.46.48-.15.12-.31.26-.13.52.18.26.79 1.3 1.71 2.11 1.18 1.05 2.18 1.38 2.45 1.52.26.15.42.13.58-.08.16-.21.68-.79.87-1.06.18-.27.37-.22.62-.13.25.09 1.58.75 1.85.88.27.13.45.2.51.31.07.11.07.64-.17 1.32z"/></svg>
 </a>
 
 <script>
-function hitungEstimasi() {
-  const acType = parseInt(document.getElementById('ac-type').value);
-  const pipa = parseInt(document.getElementById('pipa').value);
-  const luas = parseInt(document.getElementById('luas').value);
+  // Mobile Menu Toggle
+  function toggleMenu() {
+    const nav = document.getElementById('navLinks');
+    nav.classList.toggle('active');
+  }
 
-  let base = acType;
-  let pipaCost = pipa * 25000;
-  let luasFactor = luas > 25 ? 1.2 : 1;
-  let total = Math.round((base + pipaCost) * luasFactor / 1000) * 1000;
+  // FAQ Accordion
+  function toggleFaq(element) {
+    const parent = element.parentElement;
+    const isActive = parent.classList.contains('active');
+    
+    // Close all FAQs
+    document.querySelectorAll('.faq-item').forEach(item => {
+      item.classList.remove('active');
+    });
 
-  let waktu = '1–2 Jam';
-  if (pipa > 10 || luas > 30) waktu = '2–3 Jam';
-  if (pipa > 15 || luas > 45) waktu = '3–4 Jam';
-
-  document.getElementById('estimasi-result').textContent = 'Rp ' + total.toLocaleString('id-ID');
-  document.getElementById('waktu-result').textContent = waktu;
-}
-hitungEstimasi();
+    // If it wasn't active before, open it
+    if (!isActive) {
+      parent.classList.add('active');
+    }
+  }
+  
+  // Smooth Scroll for Anchor Links (Backup for older browsers)
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      document.querySelector(this.getAttribute('href')).scrollIntoView({
+        behavior: 'smooth'
+      });
+      // Close mobile menu if open
+      document.getElementById('navLinks').classList.remove('active');
+    });
+  });
 </script>
+
 </body>
 </html>
